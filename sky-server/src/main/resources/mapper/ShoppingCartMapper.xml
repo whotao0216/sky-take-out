@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.ShoppingCartMapper">
+    <insert id="insert">
+        insert into sky_take_out.shopping_cart (shopping_cart.name, shopping_cart.image, shopping_cart.user_id, shopping_cart.dish_id, shopping_cart.setmeal_id, shopping_cart.dish_flavor, shopping_cart.amount, shopping_cart.create_time)
+        values (#{name},#{image},#{userId},#{dishId},#{setmealId},#{dishFlavor},#{amount},#{createTime})
+    </insert>
+    <insert id="insertAll">
+        insert into shopping_cart
+        (name, image, user_id, dish_id, setmeal_id, dish_flavor, number, amount, create_time)
+        values
+        <foreach collection="shoppingCartList" item="sc" separator=",">
+            (#{sc.name},#{sc.image},#{sc.userId},#{sc.dishId},#{sc.setmealId},#{sc.dishFlavor},#{sc.number},#{sc.amount},#{sc.createTime})
+        </foreach>
+    </insert>
+    <update id="update">
+        update sky_take_out.shopping_cart set shopping_cart.number=#{number} where shopping_cart.id=#{id}
+    </update>
+    <delete id="delete">
+        delete from sky_take_out.shopping_cart
+        <where>
+            <if test="userId!=null">and user_id=#{userId}</if>
+            <if test="dishId!=null">and dish_id=#{dishId}</if>
+            <if test="setmealId!=null">and setmeal_id=#{setmealId}</if>
+        </where>
+    </delete>
+    <select id="list" resultType="com.sky.entity.ShoppingCart">
+        select *from sky_take_out.shopping_cart 
+        <where>
+            <if test="userId!=null">and user_id=#{userId}</if>
+            <if test="dishId!=null">and dish_id=#{dishId}</if>
+            <if test="setmealId!=null">and setmeal_id=#{setmealId}</if>
+            <if test="dishFlavor!=null">and dish_flavor=#{dishFlavor}</if>
+        </where>
+    </select>
+</mapper>

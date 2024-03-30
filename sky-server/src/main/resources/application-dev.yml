@@ -1,0 +1,20 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: sky_take_out
+    username: root
+    password: whotao_0216
+  alioss:
+    access-key-secret:
+    access-key-id:
+    bucket-name: whotao
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+  #  redis:
+  #    host: localhost
+  #    port: 6379
+  #    datebase: 0
+  wechat:
+    appid: wx8e84a76345b176e0
+    secret: 06191bbd56bf75b7b001caba0585f5bb
